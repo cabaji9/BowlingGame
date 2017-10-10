@@ -19,7 +19,8 @@ public class FileReadTest {
 
     static Logger log = Logger.getLogger(FileReadTest.class);
 
-    FileRead fileRead;
+    private FileRead fileRead;
+    protected List<String> fileContentList;
 
     private static String FILE_NAME="test.txt";
 
@@ -38,7 +39,7 @@ public class FileReadTest {
 
     @Test
     public void fileRead() throws Exception{
-        List<String> fileContentList = fileRead.getFileContents();
+        fileContentList = fileRead.getFileContents();
         assertTrue(fileContentList.size() > 0);
     }
 

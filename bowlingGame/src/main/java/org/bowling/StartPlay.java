@@ -3,6 +3,7 @@ package org.bowling;
 import org.apache.log4j.Logger;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Hyun Woo Son on 10/9/17.
@@ -17,8 +18,12 @@ public class StartPlay {
         try {
             FileRead fileRead = new FileRead(System.in);
             List<String> fileContentList = fileRead.getFileContents();
+
             Players players = new Players(fileContentList);
-            players.separateAllPlayers();
+            Map<String, List<String>> playersMap =players.obtainPlayersAndScores();
+
+
+
 
         }
         catch(Exception e){
