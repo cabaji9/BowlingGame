@@ -1,4 +1,4 @@
-package org.bowling;
+package org.bowling.game;
 
 import org.apache.log4j.Logger;
 
@@ -21,6 +21,9 @@ public class StartPlay {
 
             Players players = new Players(fileContentList);
             Map<String, List<String>> playersMap =players.obtainPlayersAndScores();
+
+            Bowling bowling = new Bowling(playersMap);
+            bowling.startBowl();
 
 
 
