@@ -1,12 +1,12 @@
-##BOWLING GAME
+## BOWLING GAME
 
-###SPECIFICATIONS AND REQUIREMENTS
+### SPECIFICATIONS AND REQUIREMENTS
 
 1) Java 1.8
 2) Gradle
 3) Compiles into a jar
 
-###EXECUTION
+### EXECUTION
 
 Two was to execute this game.
 
