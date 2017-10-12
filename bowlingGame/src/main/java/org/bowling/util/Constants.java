@@ -13,5 +13,6 @@ public interface Constants {
 
     String LABEL_FRAME="Frame";
     String LABEL_PINFALLS="Pinfalls";
+    String LABEL_SCORE="Score";
 
 }

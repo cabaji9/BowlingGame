@@ -28,6 +28,7 @@ public class StartPlay {
 
 
 
+
         }
         catch(Exception e){
             log.error("StartPlay | An error ocurred trying to start the game.",e);

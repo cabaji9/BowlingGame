@@ -1,5 +1,6 @@
 package org.bowling.game;
 
+import org.bowling.util.BowlingUtil;
 import org.bowling.util.Constants;
 
 import java.util.Arrays;
@@ -24,72 +25,36 @@ public class Bowling {
             List<String> pinsDownList = this.playersMap.get(player);
             printPlayer(player);
             printScoreLine(pinsDownList);
-
+            printTotalScoreLine(pinsDownList);
         });
     }
 
 
     private void printScoreLine(List<String> pinsDownList) {
-        String[] eachPinDownArray = obtainPinDownLine(pinsDownList);
+        String[] eachPinDownArray = new PrintLine().obtainPinDownLine(pinsDownList);
         StringBuilder scoreLine = new StringBuilder(Constants.LABEL_PINFALLS + "\t");
         Arrays.stream(eachPinDownArray).forEach(pinDown -> {
             scoreLine.append(pinDown + "\t");
-
         });
-        System.out.println(scoreLine);
+        BowlingUtil.print(scoreLine.toString());
     }
 
 
-    private String[] obtainPinDownLine(List<String> pinsDownList) {
-        String[] eachPinDownArray = new String[21];
-        int i = 0;
-        boolean isSecondChance = false;
-        int valOne = 0;
-        for (String pinsDown : pinsDownList) {
-            Integer pinsDownInteger = Constants.FOUL.equals(pinsDown) ?0:Integer.parseInt(pinsDown);
-            if (i == 21) {
-                break;
-            }
-            if (Constants.STRIKE == pinsDownInteger) {
-                if (i < 18) {
-                    eachPinDownArray[i++] = "";
-                }
-                eachPinDownArray[i] = Constants.STRIKE_VAL;
-            } else {
-                if (!isSecondChance) {
-                    if (Constants.FOUL.equals(pinsDown)) {
-                        eachPinDownArray[i] = Constants.FOUL;
-                        valOne = 0;
-                    } else {
-                        eachPinDownArray[i] = pinsDown;
-                        valOne = pinsDownInteger;
-                    }
-                    if (i < 18) {
-                        isSecondChance = true;
-                    }
-                } else {
-                    String secondChanceValue;
-                    if (Constants.FOUL.equals(pinsDown)) {
-                        secondChanceValue = Constants.FOUL;
-                    } else if (pinsDownInteger + valOne == Constants.STRIKE) {
-                        secondChanceValue = Constants.SPARE_VAL;
-                    } else {
-                        secondChanceValue = pinsDown;
-                    }
+    private void printTotalScoreLine(List<String> pinsDownList) {
 
-                    eachPinDownArray[i] = secondChanceValue;
-                    valOne = 0;
-                    isSecondChance = false;
-                }
-            }
-            i++;
-        }
-        return eachPinDownArray;
+        String[] totalScoreArray = new PrintTotalScoreLine(pinsDownList).obtainTotalScore();
+        StringBuilder scoreLine = new StringBuilder(Constants.LABEL_SCORE + "\t\t");
+        Arrays.stream(totalScoreArray).forEach(score -> {
+            scoreLine.append(score + "\t\t");
+        });
+        BowlingUtil.print(scoreLine.toString());
+
+
     }
 
 
     private void printPlayer(String player) {
-        System.out.println(player);
+        BowlingUtil.print(player);
     }
 
 
@@ -102,6 +67,6 @@ public class Bowling {
                 header.append(i + "\t\t");
             }
         }
-        System.out.println(header);
+        BowlingUtil.print(header.toString());
     }
 }
